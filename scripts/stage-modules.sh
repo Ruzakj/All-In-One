@@ -5,7 +5,7 @@ STAGE_DIR="${RUNNER_TEMP:-/tmp}/ric-all-in-one-sources"
 rm -rf "$STAGE_DIR" features app/src/main/assets/vibetube background
 mkdir -p "$STAGE_DIR" features app/src/main/assets/vibetube background
 
-git clone --depth 1 https://github.com/Ruzakj/cso.git "$STAGE_DIR/cso"
+git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/Ruzakj/cso.git "$STAGE_DIR/cso"
 git clone --depth 1 https://github.com/Ruzakj/emuu-hub.git "$STAGE_DIR/emuhub"
 git clone --depth 1 https://github.com/Ruzakj/speedometer-.git "$STAGE_DIR/speedometer"
 git clone --depth 1 https://github.com/Ruzakj/vibetube-cloud.git "$STAGE_DIR/vibetube"
@@ -37,6 +37,11 @@ replace("features/emuhub/build.gradle.kts", 'id("com.android.application")', 'id
 replace("features/emuhub/build.gradle.kts", '        applicationId = "com.ric.emuhub"\n', "")
 replace("features/emuhub/build.gradle.kts", '        versionCode = System.getenv("EMUHUB_VERSION_CODE")?.toIntOrNull() ?: 4\n', "")
 replace("features/emuhub/build.gradle.kts", '        versionName = System.getenv("EMUHUB_VERSION_NAME") ?: "0.4.0"\n', "")
+replace(
+    "features/emuhub/build.gradle.kts",
+    "        minSdk = 26\n",
+    '        minSdk = 26\n        buildConfigField("int", "VERSION_CODE", "4")\n        buildConfigField("String", "VERSION_NAME", "\\\"0.4.0\\\"")\n',
+)
 replace("features/speedometer/build.gradle.kts", 'id("com.android.application")', 'id("com.android.library")')
 replace("features/speedometer/build.gradle.kts", '        applicationId = "com.ruzakj.speedometer"\n', "")
 replace("features/speedometer/build.gradle.kts", '        versionCode = 8\n', "")
