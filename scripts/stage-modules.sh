@@ -31,10 +31,16 @@ def replace(path, old, new):
 
 replace("features/cso/build.gradle", "com.android.application", "com.android.library")
 replace("features/cso/build.gradle", "        applicationId 'id.ric.isotocso'\n", "")
+replace("features/cso/build.gradle", "        versionCode 3\n", "")
+replace("features/cso/build.gradle", "        versionName '1.2.0'\n", "")
 replace("features/emuhub/build.gradle.kts", 'id("com.android.application")', 'id("com.android.library")')
 replace("features/emuhub/build.gradle.kts", '        applicationId = "com.ric.emuhub"\n', "")
+replace("features/emuhub/build.gradle.kts", '        versionCode = System.getenv("EMUHUB_VERSION_CODE")?.toIntOrNull() ?: 4\n', "")
+replace("features/emuhub/build.gradle.kts", '        versionName = System.getenv("EMUHUB_VERSION_NAME") ?: "0.4.0"\n', "")
 replace("features/speedometer/build.gradle.kts", 'id("com.android.application")', 'id("com.android.library")')
 replace("features/speedometer/build.gradle.kts", '        applicationId = "com.ruzakj.speedometer"\n', "")
+replace("features/speedometer/build.gradle.kts", '        versionCode = 8\n', "")
+replace("features/speedometer/build.gradle.kts", '        versionName = "2.6"\n', "")
 replace("features/emuhub/src/main/java/com/ric/emuhub/EmuHubApp.kt", "class EmuHubApp : Application()", "open class EmuHubApp : Application()")
 
 # Library modules must not contribute additional launcher icons.
