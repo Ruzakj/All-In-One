@@ -1,0 +1,7 @@
+<resources>
+    <color name="all_in_one_bg">#070A12</color>
+    <color name="all_in_one_surface">#111827</color>
+    <color name="all_in_one_text">#F8FAFC</color>
+    <color name="all_in_one_muted">#94A3B8</color>
+    <color name="all_in_one_accent">#22D3EE</color>
+</resources>

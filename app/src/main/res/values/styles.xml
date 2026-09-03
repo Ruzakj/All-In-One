@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.RicAllInOne" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/all_in_one_bg</item>
+        <item name="android:navigationBarColor">@color/all_in_one_bg</item>
+        <item name="android:colorAccent">@color/all_in_one_accent</item>
+    </style>
+    <!-- Resolves the shared legacy name used by CSO Tools and Speedometer. -->
+    <style name="AppTheme" parent="Theme.RicAllInOne" />
+</resources>
