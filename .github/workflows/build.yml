@@ -108,6 +108,7 @@ jobs:
       - name: Verify unified APK
         shell: bash
         run: |
+          set -euo pipefail
           APK=app/build/outputs/apk/debug/app-debug.apk
           test -s "$APK"
           unzip -l "$APK" | grep 'lib/arm64-v8a/libemuhost.so'
@@ -115,7 +116,14 @@ jobs:
           unzip -l "$APK" | grep 'lib/arm64-v8a/libemucore_4k.so'
           unzip -l "$APK" | grep 'assets/vibetube/index.html'
           unzip -l "$APK" | grep 'lib/arm64-v8a/libchdman.so'
-          unzip -p "$APK" classes.dex | strings | grep 'com/ruzakj/ricbrowser/MainActivity'
+          FOUND_BROWSER=0
+          for DEX in $(unzip -Z1 "$APK" | grep -E '^classes([0-9]+)?\.dex$'); do
+            if unzip -p "$APK" "$DEX" | strings | grep -q 'com/ruzakj/ricbrowser/MainActivity'; then
+              FOUND_BROWSER=1
+              break
+            fi
+          done
+          test "$FOUND_BROWSER" -eq 1
           ls -lh "$APK"
 
       - name: Upload APK
