@@ -34,7 +34,7 @@ jobs:
           yes | sdkmanager --licenses >/dev/null || true
           sdkmanager "platforms;android-35" "platforms;android-36" "ndk;27.0.12077973" "cmake;3.22.1"
 
-      - name: Stage four application modules
+      - name: Stage five application modules
         run: bash scripts/stage-modules.sh
 
       - name: Restore emulator engine cache
@@ -86,8 +86,9 @@ jobs:
           mkdir -p features/emuhub/src/main/assets/ARMSX2
           cp -a /tmp/armsx2-runtime/assets/ARMSX2/. features/emuhub/src/main/assets/ARMSX2/
 
-      - name: Verify staged engines
+      - name: Verify staged sources and engines
         run: |
+          test -s features/browser/src/main/java/com/ruzakj/ricbrowser/MainActivity.kt
           test -s features/emuhub/src/main/jniLibs/arm64-v8a/libmgba_core.so
           test -s features/emuhub/src/main/jniLibs/arm64-v8a/libfceumm_core.so
           test -s features/emuhub/src/main/jniLibs/arm64-v8a/libsnes9x_core.so
@@ -114,6 +115,7 @@ jobs:
           unzip -l "$APK" | grep 'lib/arm64-v8a/libemucore_4k.so'
           unzip -l "$APK" | grep 'assets/vibetube/index.html'
           unzip -l "$APK" | grep 'lib/arm64-v8a/libchdman.so'
+          unzip -p "$APK" classes.dex | strings | grep 'com/ruzakj/ricbrowser/MainActivity'
           ls -lh "$APK"
 
       - name: Upload APK

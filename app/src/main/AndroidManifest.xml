@@ -6,10 +6,12 @@
         android:name=".AllInOneApp"
         android:allowBackup="true"
         android:extractNativeLibs="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="Ric All-In-One"
         android:supportsRtl="true"
         android:theme="@style/Theme.RicAllInOne"
-        tools:replace="android:name,android:theme,android:label,android:allowBackup,android:supportsRtl,android:extractNativeLibs">
+        tools:replace="android:name,android:theme,android:label,android:allowBackup,android:supportsRtl,android:extractNativeLibs,android:icon,android:roundIcon">
         <activity android:name=".VibeTubeActivity" android:exported="false" />
         <activity
             android:name=".MainActivity"

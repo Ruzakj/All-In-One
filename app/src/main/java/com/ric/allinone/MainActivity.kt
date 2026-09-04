@@ -11,6 +11,7 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ric.emuhub.StoragePermissionActivity
+import com.ruzakj.ricbrowser.MainActivity as BrowserActivity
 import com.ruzakj.speedometer.MainActivityV2
 import id.ric.isotocso.MainActivity as CsoActivity
 
@@ -28,12 +29,13 @@ class MainActivity : AppCompatActivity() {
             setPadding(dp(20), dp(28), dp(20), dp(28))
         }
         column.addView(label("RIC ALL-IN-ONE", 28f, Color.WHITE, true))
-        column.addView(label("Empat aplikasi, satu tempat.", 14f, Color.rgb(148, 163, 184), false).apply {
+        column.addView(label("Lima aplikasi, satu tempat.", 14f, Color.rgb(148, 163, 184), false).apply {
             setPadding(0, dp(6), 0, dp(22))
         })
-        column.addView(card("ISO / CSO Tools", "Kompres ISO, buat CSO, dan kelola cutscene") { open(CsoActivity::class.java) })
+        column.addView(card("ISO / CSO Tools", "Kompres ISO, buat CSO, CHD, dan kelola cutscene") { open(CsoActivity::class.java) })
         column.addView(card("Emu Hub", "Library dan runtime emulator dalam satu aplikasi") { open(StoragePermissionActivity::class.java) })
         column.addView(card("Speedometer", "GPS, lean angle, telemetry, history, dan replay") { open(MainActivityV2::class.java) })
+        column.addView(card("Ric Browser", "Browser ringan, multi-tab, extensions, adblock, dan media tools") { open(BrowserActivity::class.java) })
         column.addView(card("Ric Space / VibeTube", "Musik dan seluruh toolbox PWA versi lokal") { open(VibeTubeActivity::class.java) })
         scroll.addView(column)
         return scroll
