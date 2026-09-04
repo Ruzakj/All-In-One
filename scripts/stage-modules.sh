@@ -65,6 +65,9 @@ sub("features/browser/build.gradle", r"id ['\"]com\.android\.application['\"]", 
 sub("features/browser/build.gradle", r"^\s*applicationId\s+['\"][^'\"]+['\"]\s*$\n?", "", flags=re.M)
 sub("features/browser/build.gradle", r"^\s*versionCode\s+.+$\n?", "", flags=re.M)
 sub("features/browser/build.gradle", r"^\s*versionName\s+.+$\n?", "", flags=re.M)
+# Android library modules cannot use the application resource shrinker. Remove both
+# release/debug declarations while preserving code minification and all browser features.
+sub("features/browser/build.gradle", r"^\s*shrinkResources\s+(?:true|false)\s*$\n?", "", flags=re.M, required=False)
 
 # Library modules must not contribute launcher intent-filters. Preserve their activities
 # so the unified dashboard can launch them explicitly.
