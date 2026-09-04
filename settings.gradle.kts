@@ -14,4 +14,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "RicAllInOne"
-include(":app", ":features:cso", ":features:emuhub", ":features:speedometer")
+include(":app", ":features:cso", ":features:emuhub", ":features:speedometer", ":features:browser")
